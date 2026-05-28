@@ -24,7 +24,7 @@ CONF_FAN_HIGH = "fan_high"
 
 DEFAULT_NAME = "Tuya IR Climate"
 DEFAULT_REGION = "eu"
-DEFAULT_INFRARED_ID = "bf2b843da25ca8b275uy7a"
+DEFAULT_INFRARED_ID = ""
 REGION_OPTIONS = ["cn", "us", "us-e", "eu", "eu-w", "in", "sg"]
 
 DEFAULT_SCAN_INTERVAL = timedelta(seconds=10)

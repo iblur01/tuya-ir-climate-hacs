@@ -26,9 +26,9 @@ You need:
 - Tuya Cloud Access ID / Client ID
 - Tuya Cloud Access Secret / Client Secret
 - Tuya region, for example `eu`
-- IR hub device ID, for example `bf2b843da25ca8b275uy7a`
+- IR hub device ID
 
-The setup wizard discovers the AC remotes attached to the hub and then lets you confirm the mapping values. The defaults match the validated lab device:
+The setup wizard discovers the AC remotes attached to the hub and then lets you confirm the mapping values. The defaults match the tested Tuya IR AC profile:
 
 - Cool mode: `0`
 - Dry mode: `4`

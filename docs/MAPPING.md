@@ -2,11 +2,13 @@
 
 ## IDs
 
-Validated lab values:
+The setup wizard asks for the physical IR hub device ID, then discovers the
+virtual AC remotes attached to that hub.
 
-- IR hub `infrared_id`: `bf2b843da25ca8b275uy7a`
-- AC remote `remote_id`: `bf64677332a10752ec3p7o`
-- AC category: `infrared_ac`, IR category id `5`
+Observed AC category:
+
+- Tuya category: `infrared_ac`
+- IR category id: `5`
 
 ## Polling
 
