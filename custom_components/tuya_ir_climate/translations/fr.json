@@ -1,0 +1,55 @@
+{
+  "title": "Tuya IR Climate",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connexion a Tuya IR Climate",
+        "description": "Configure le projet Tuya Cloud et le hub IR physique. L'etape suivante detectera les telecommandes attachees a ce hub.",
+        "data": {
+          "device_name": "Nom",
+          "api_key": "Access ID / Client ID",
+          "api_secret": "Access Secret / Client Secret",
+          "region": "Region",
+          "infrared_id": "ID du hub IR"
+        }
+      },
+      "remote": {
+        "title": "Configuration de la telecommande clim",
+        "description": "Selectionne la telecommande clim virtuelle et confirme les valeurs Tuya observees pendant le reverse.",
+        "data": {
+          "remote_id": "Telecommande clim",
+          "mode_cool": "Valeur du mode clim",
+          "mode_dry": "Valeur du mode deshumidificateur",
+          "fan_auto": "Valeur ventilation auto",
+          "fan_low": "Valeur ventilation low",
+          "fan_high": "Valeur ventilation high"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossible de se connecter a la telecommande IR Tuya.",
+      "invalid_auth": "Identifiants Tuya Cloud invalides.",
+      "no_remotes": "Aucune telecommande trouvee sur ce hub IR."
+    },
+    "abort": {
+      "already_configured": "Cette telecommande IR Tuya est deja configuree."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Tuya IR Climate",
+        "data": {
+          "scan_interval": "Intervalle de polling en secondes"
+        }
+      }
+    }
+  },
+  "entity": {
+    "climate": {
+      "climate": {
+        "name": "Clim"
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "title": "Tuya IR Climate",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Tuya IR Climate",
+        "description": "Configure the Tuya Cloud project and the physical IR hub. The next step will discover the remotes attached to this hub.",
+        "data": {
+          "device_name": "Name",
+          "api_key": "Access ID / Client ID",
+          "api_secret": "Access Secret / Client Secret",
+          "region": "Region",
+          "infrared_id": "IR hub device ID"
+        }
+      },
+      "remote": {
+        "title": "Configure the AC remote",
+        "description": "Select the virtual AC remote and confirm the Tuya values observed during reverse engineering.",
+        "data": {
+          "remote_id": "AC remote",
+          "mode_cool": "Cool mode value",
+          "mode_dry": "Dry mode value",
+          "fan_auto": "Auto fan value",
+          "fan_low": "Low fan value",
+          "fan_high": "High fan value"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to the Tuya IR remote.",
+      "invalid_auth": "Invalid Tuya Cloud credentials.",
+      "no_remotes": "No remotes were found on this IR hub."
+    },
+    "abort": {
+      "already_configured": "This Tuya IR remote is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tuya IR Climate options",
+        "data": {
+          "scan_interval": "Polling interval in seconds"
+        }
+      }
+    }
+  },
+  "entity": {
+    "climate": {
+      "climate": {
+        "name": "Climate"
+      }
+    }
+  }
+}
