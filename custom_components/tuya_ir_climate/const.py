@@ -21,6 +21,16 @@ CONF_MODE_DRY = "mode_dry"
 CONF_FAN_AUTO = "fan_auto"
 CONF_FAN_LOW = "fan_low"
 CONF_FAN_HIGH = "fan_high"
+CONF_TEMP_SENSOR = "temp_sensor"
+CONF_DELTA = "delta"
+CONF_MIN_CYCLE = "min_cycle_duration"
+
+DEFAULT_DELTA = 0.5
+MIN_DELTA = 0.1
+MAX_DELTA = 5.0
+DEFAULT_MIN_CYCLE = 300
+MIN_MIN_CYCLE = 0
+MAX_MIN_CYCLE = 3600
 
 DEFAULT_NAME = "Tuya IR Climate"
 DEFAULT_REGION = "eu"

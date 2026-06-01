@@ -15,16 +15,21 @@ from .api import TuyaIRClimateAPI, TuyaIRClimateError
 from .const import (
     CONF_API_KEY,
     CONF_API_SECRET,
+    CONF_DELTA,
     CONF_DEVICE_NAME,
     CONF_FAN_AUTO,
     CONF_FAN_HIGH,
     CONF_FAN_LOW,
     CONF_INFRARED_ID,
+    CONF_MIN_CYCLE,
     CONF_MODE_COOL,
     CONF_MODE_DRY,
     CONF_REGION,
     CONF_REMOTE_ID,
     CONF_SCAN_INTERVAL,
+    CONF_TEMP_SENSOR,
+    DEFAULT_DELTA,
+    DEFAULT_MIN_CYCLE,
     DEFAULT_NAME,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
@@ -50,6 +55,9 @@ class TuyaIRClimateDevice:
     fan_auto: int
     fan_low: int
     fan_high: int
+    temp_sensor: str
+    delta: float
+    min_cycle: int
 
 
 class TuyaIRClimateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -95,6 +103,9 @@ class TuyaIRClimateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             fan_auto=int(data.get(CONF_FAN_AUTO, TUYA_FAN_AUTO)),
             fan_low=int(data.get(CONF_FAN_LOW, TUYA_FAN_LOW)),
             fan_high=int(data.get(CONF_FAN_HIGH, TUYA_FAN_HIGH)),
+            temp_sensor=data[CONF_TEMP_SENSOR],
+            delta=float(options.get(CONF_DELTA, DEFAULT_DELTA)),
+            min_cycle=int(options.get(CONF_MIN_CYCLE, DEFAULT_MIN_CYCLE)),
         )
         interval = timedelta(
             seconds=int(options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL.seconds))

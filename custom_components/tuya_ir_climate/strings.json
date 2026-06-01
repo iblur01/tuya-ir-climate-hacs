@@ -18,6 +18,7 @@
         "description": "Select the virtual AC remote and confirm the Tuya values observed during reverse engineering.",
         "data": {
           "remote_id": "AC remote",
+          "temp_sensor": "Room temperature sensor",
           "mode_cool": "Cool mode value",
           "mode_dry": "Dry mode value",
           "fan_auto": "Auto fan value",
@@ -40,7 +41,9 @@
       "init": {
         "title": "Tuya IR Climate options",
         "data": {
-          "scan_interval": "Polling interval in seconds"
+          "scan_interval": "Polling interval in seconds",
+          "delta": "Hysteresis band in °C (on/off threshold around target)",
+          "min_cycle_duration": "Minimum time between on/off switches in seconds (compressor protection)"
         }
       }
     }

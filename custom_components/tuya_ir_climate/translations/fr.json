@@ -18,6 +18,7 @@
         "description": "Selectionne la telecommande clim virtuelle et confirme les valeurs Tuya observees pendant le reverse.",
         "data": {
           "remote_id": "Telecommande clim",
+          "temp_sensor": "Capteur de temperature de la piece",
           "mode_cool": "Valeur du mode clim",
           "mode_dry": "Valeur du mode deshumidificateur",
           "fan_auto": "Valeur ventilation auto",
@@ -40,7 +41,9 @@
       "init": {
         "title": "Options Tuya IR Climate",
         "data": {
-          "scan_interval": "Intervalle de polling en secondes"
+          "scan_interval": "Intervalle de polling en secondes",
+          "delta": "Bande d'hysteresis en °C (seuil marche/arret autour de la cible)",
+          "min_cycle_duration": "Duree minimale entre deux bascules marche/arret en secondes (protection compresseur)"
         }
       }
     }

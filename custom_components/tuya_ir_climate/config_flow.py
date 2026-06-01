@@ -7,27 +7,38 @@ from typing import Any
 import voluptuous as vol
 
 from homeassistant import config_entries
+from homeassistant.const import Platform
+from homeassistant.helpers import selector
 
 from .api import TuyaIRClimateAPI, TuyaIRClimateAuthError, TuyaIRClimateError
 from .const import (
     CONF_API_KEY,
     CONF_API_SECRET,
+    CONF_DELTA,
     CONF_DEVICE_NAME,
     CONF_FAN_AUTO,
     CONF_FAN_HIGH,
     CONF_FAN_LOW,
     CONF_INFRARED_ID,
+    CONF_MIN_CYCLE,
     CONF_MODE_COOL,
     CONF_MODE_DRY,
     CONF_REGION,
     CONF_REMOTE_ID,
     CONF_SCAN_INTERVAL,
+    CONF_TEMP_SENSOR,
+    DEFAULT_DELTA,
     DEFAULT_INFRARED_ID,
+    DEFAULT_MIN_CYCLE,
     DEFAULT_NAME,
     DEFAULT_REGION,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
+    MAX_DELTA,
+    MAX_MIN_CYCLE,
     MAX_SCAN_INTERVAL,
+    MIN_DELTA,
+    MIN_MIN_CYCLE,
     MIN_SCAN_INTERVAL,
     REGION_OPTIONS,
     TUYA_FAN_AUTO,
@@ -148,6 +159,12 @@ class TuyaIRClimateConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     vol.Required(CONF_REMOTE_ID, default=default_remote_id): vol.In(
                         remote_options
                     ),
+                    vol.Required(CONF_TEMP_SENSOR): selector.EntitySelector(
+                        selector.EntitySelectorConfig(
+                            domain=Platform.SENSOR,
+                            device_class="temperature",
+                        )
+                    ),
                     vol.Required(CONF_MODE_COOL, default=TUYA_MODE_COOL): vol.Coerce(
                         int
                     ),
@@ -174,7 +191,8 @@ class TuyaIRClimateOptionsFlow(config_entries.OptionsFlow):
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
-        current_interval = self._config_entry.options.get(
+        options = self._config_entry.options
+        current_interval = options.get(
             CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL.seconds
         )
         return self.async_show_form(
@@ -184,7 +202,21 @@ class TuyaIRClimateOptionsFlow(config_entries.OptionsFlow):
                     vol.Required(CONF_SCAN_INTERVAL, default=current_interval): vol.All(
                         vol.Coerce(int),
                         vol.Range(min=MIN_SCAN_INTERVAL, max=MAX_SCAN_INTERVAL),
-                    )
+                    ),
+                    vol.Required(
+                        CONF_DELTA,
+                        default=options.get(CONF_DELTA, DEFAULT_DELTA),
+                    ): vol.All(
+                        vol.Coerce(float),
+                        vol.Range(min=MIN_DELTA, max=MAX_DELTA),
+                    ),
+                    vol.Required(
+                        CONF_MIN_CYCLE,
+                        default=options.get(CONF_MIN_CYCLE, DEFAULT_MIN_CYCLE),
+                    ): vol.All(
+                        vol.Coerce(int),
+                        vol.Range(min=MIN_MIN_CYCLE, max=MAX_MIN_CYCLE),
+                    ),
                 }
             ),
         )
