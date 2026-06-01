@@ -41,6 +41,7 @@
       "init": {
         "title": "Tuya IR Climate options",
         "data": {
+          "temp_sensor": "Room temperature sensor",
           "scan_interval": "Polling interval in seconds",
           "delta": "Hysteresis band in °C (on/off threshold around target)",
           "min_cycle_duration": "Minimum time between on/off switches in seconds (compressor protection)"

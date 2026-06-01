@@ -41,6 +41,7 @@
       "init": {
         "title": "Options Tuya IR Climate",
         "data": {
+          "temp_sensor": "Capteur de temperature de la piece",
           "scan_interval": "Intervalle de polling en secondes",
           "delta": "Bande d'hysteresis en °C (seuil marche/arret autour de la cible)",
           "min_cycle_duration": "Duree minimale entre deux bascules marche/arret en secondes (protection compresseur)"

@@ -195,10 +195,25 @@ class TuyaIRClimateOptionsFlow(config_entries.OptionsFlow):
         current_interval = options.get(
             CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL.seconds
         )
+        current_sensor = options.get(
+            CONF_TEMP_SENSOR, self._config_entry.data.get(CONF_TEMP_SENSOR)
+        )
+        sensor_selector = selector.EntitySelector(
+            selector.EntitySelectorConfig(
+                domain=Platform.SENSOR,
+                device_class="temperature",
+            )
+        )
+        sensor_key = (
+            vol.Required(CONF_TEMP_SENSOR, default=current_sensor)
+            if current_sensor
+            else vol.Required(CONF_TEMP_SENSOR)
+        )
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema(
                 {
+                    sensor_key: sensor_selector,
                     vol.Required(CONF_SCAN_INTERVAL, default=current_interval): vol.All(
                         vol.Coerce(int),
                         vol.Range(min=MIN_SCAN_INTERVAL, max=MAX_SCAN_INTERVAL),

@@ -103,7 +103,9 @@ class TuyaIRClimateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             fan_auto=int(data.get(CONF_FAN_AUTO, TUYA_FAN_AUTO)),
             fan_low=int(data.get(CONF_FAN_LOW, TUYA_FAN_LOW)),
             fan_high=int(data.get(CONF_FAN_HIGH, TUYA_FAN_HIGH)),
-            temp_sensor=data[CONF_TEMP_SENSOR],
+            temp_sensor=options.get(
+                CONF_TEMP_SENSOR, data.get(CONF_TEMP_SENSOR, "")
+            ),
             delta=float(options.get(CONF_DELTA, DEFAULT_DELTA)),
             min_cycle=int(options.get(CONF_MIN_CYCLE, DEFAULT_MIN_CYCLE)),
         )

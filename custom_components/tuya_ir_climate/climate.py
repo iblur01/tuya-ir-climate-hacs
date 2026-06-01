@@ -109,13 +109,14 @@ class TuyaIRClimate(TuyaIRClimateEntity, ClimateEntity, RestoreEntity):
             if fan in self._attr_fan_modes:
                 self._fan_mode = fan
 
-        self.async_on_remove(
-            async_track_state_change_event(
-                self.hass,
-                [self.coordinator.device.temp_sensor],
-                self._async_sensor_changed,
+        if self.coordinator.device.temp_sensor:
+            self.async_on_remove(
+                async_track_state_change_event(
+                    self.hass,
+                    [self.coordinator.device.temp_sensor],
+                    self._async_sensor_changed,
+                )
             )
-        )
         # Apply the restored intent against the current room temperature.
         await self._async_control(force=True)
 
